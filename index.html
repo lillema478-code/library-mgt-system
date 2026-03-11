@@ -66,6 +66,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .logo-area {
@@ -104,15 +105,16 @@
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .nav-item {
             color: #2c3e50;
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: all 0.3s ease;
@@ -121,12 +123,13 @@
             background: none;
             border: none;
             font-family: 'Inter', sans-serif;
+            padding: 0.5rem 0;
         }
 
         .nav-item::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: 0;
             left: 0;
             width: 0;
             height: 2px;
@@ -153,7 +156,7 @@
         .btn-join {
             background: linear-gradient(135deg, #8b5a2b, #a8753a);
             color: white !important;
-            padding: 0.8rem 2rem !important;
+            padding: 0.6rem 1.5rem !important;
             border-radius: 50px;
             font-weight: 600 !important;
         }
@@ -187,9 +190,9 @@
 
         /* ===== HERO SECTION ===== */
         #home-section {
-            background: linear-gradient(135deg, #f5f0e8 0%, #e8e1d5 100%);
             display: flex;
             align-items: center;
+            background: linear-gradient(135deg, #f5f0e8 0%, #e8e1d5 100%);
         }
 
         .hero-content {
@@ -853,6 +856,16 @@
             resize: none;
         }
 
+        /* ===== JOIN SECTION ===== */
+        .join-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
         /* ===== FOOTER ===== */
         .footer {
             background: white;
@@ -957,6 +970,14 @@
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem 0;
+            }
+
+            .nav-links.show {
+                display: flex;
             }
 
             .mobile-menu {
@@ -993,20 +1014,20 @@
                 </div>
             </div>
 
-            <div class="nav-links">
-                <button class="nav-item active" onclick="showSection('home')">HOME</button>
-                <button class="nav-item" onclick="showSection('features')">FEATURES</button>
-                <button class="nav-item" onclick="showSection('books')">BOOKS</button>
-                <button class="nav-item" onclick="showSection('categories')">CATEGORIES</button>
-                <button class="nav-item" onclick="showSection('borrowings')">MY BOOKS</button>
-                <button class="nav-item" onclick="showSection('events')">EVENTS</button>
-                <button class="nav-item" onclick="showSection('team')">OUR TEAM</button>
-                <button class="nav-item" onclick="showSection('contact')">CONTACT</button>
-                <button class="nav-item btn-join" onclick="showSection('join')">JOIN NOW</button>
-            </div>
-
             <div class="mobile-menu" onclick="toggleMobileMenu()">
                 <i class="fas fa-bars"></i>
+            </div>
+
+            <div class="nav-links" id="navLinks">
+                <button class="nav-item active" onclick="showSection('home', this)">HOME</button>
+                <button class="nav-item" onclick="showSection('features', this)">FEATURES</button>
+                <button class="nav-item" onclick="showSection('books', this)">BOOKS</button>
+                <button class="nav-item" onclick="showSection('categories', this)">CATEGORIES</button>
+                <button class="nav-item" onclick="showSection('borrowings', this)">MY BOOKS</button>
+                <button class="nav-item" onclick="showSection('events', this)">EVENTS</button>
+                <button class="nav-item" onclick="showSection('team', this)">OUR TEAM</button>
+                <button class="nav-item" onclick="showSection('contact', this)">CONTACT</button>
+                <button class="nav-item btn-join" onclick="showSection('join', this)">JOIN NOW</button>
             </div>
         </div>
     </header>
@@ -1037,8 +1058,8 @@
                 </div>
 
                 <div class="hero-buttons">
-                    <button class="btn-primary" onclick="showSection('books')">BROWSE BOOKS</button>
-                    <button class="btn-outline" onclick="showSection('join')">BECOME A MEMBER</button>
+                    <button class="btn-primary" onclick="showSection('books', this)">BROWSE BOOKS</button>
+                    <button class="btn-outline" onclick="showSection('join', this)">BECOME A MEMBER</button>
                 </div>
             </div>
 
@@ -1333,7 +1354,7 @@
             <!-- Member 1 -->
             <div class="team-card" data-aos="fade-up">
                 <div class="team-avatar">
-                    <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Sumeya">
+                    
                 </div>
                 <h3 class="team-name">Sumeya Kasim</h3>
                 <p class="team-role">Project Manager</p>
@@ -1348,7 +1369,7 @@
             <!-- Member 2 -->
             <div class="team-card" data-aos="fade-up" data-aos-delay="50">
                 <div class="team-avatar">
-                    <img src="https://randomuser.me/api/portraits/women/2.jpg" alt="Kidist">
+                    
                 </div>
                 <h3 class="team-name">Kidist Minas</h3>
                 <p class="team-role">Frontend Developer</p>
@@ -1363,7 +1384,6 @@
             <!-- Member 3 -->
             <div class="team-card" data-aos="fade-up" data-aos-delay="100">
                 <div class="team-avatar">
-                    <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Huzeyfa">
                 </div>
                 <h3 class="team-name">Huzeyfa A/Kadir</h3>
                 <p class="team-role">Backend Developer</p>
@@ -1378,7 +1398,7 @@
             <!-- Member 4 -->
             <div class="team-card" data-aos="fade-up" data-aos-delay="150">
                 <div class="team-avatar">
-                    <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Siyam">
+                    
                 </div>
                 <h3 class="team-name">Siyam Mekdad</h3>
                 <p class="team-role">Database Admin</p>
@@ -1393,7 +1413,7 @@
             <!-- Member 5 -->
             <div class="team-card" data-aos="fade-up" data-aos-delay="200">
                 <div class="team-avatar">
-                    <img src="https://randomuser.me/api/portraits/women/3.jpg" alt="Eden">
+                    
                 </div>
                 <h3 class="team-name">Eden Asfaw</h3>
                 <p class="team-role">UI/UX Designer</p>
@@ -1408,7 +1428,7 @@
             <!-- Member 6 -->
             <div class="team-card" data-aos="fade-up" data-aos-delay="250">
                 <div class="team-avatar">
-                    <img src="https://randomuser.me/api/portraits/men/3.jpg" alt="Selman">
+                    
                 </div>
                 <h3 class="team-name">Selman Ibrahim</h3>
                 <p class="team-role">QA Engineer</p>
@@ -1423,7 +1443,6 @@
             <!-- Member 7 -->
             <div class="team-card" data-aos="fade-up" data-aos-delay="300">
                 <div class="team-avatar">
-                    <img src="https://randomuser.me/api/portraits/women/4.jpg" alt="Bemnet">
                 </div>
                 <h3 class="team-name">Bemnet Yohans</h3>
                 <p class="team-role">Technical Writer</p>
@@ -1438,7 +1457,7 @@
             <!-- Member 8 -->
             <div class="team-card" data-aos="fade-up" data-aos-delay="350">
                 <div class="team-avatar">
-                    <img src="https://randomuser.me/api/portraits/men/4.jpg" alt="Imran">
+                    
                 </div>
                 <h3 class="team-name">Imran Shensu</h3>
                 <p class="team-role">DevOps Engineer</p>
@@ -1467,7 +1486,7 @@
                     </div>
                     <div class="contact-text">
                         <h4>Address</h4>
-                        <p> Addis Ababa, Ethiopia</p>
+                        <p>Addis Ababa, Ethiopia</p>
                     </div>
                 </div>
 
@@ -1527,7 +1546,7 @@
         <h2 class="section-title" data-aos="fade-up">Become a <span>Member</span></h2>
         <p class="section-subtitle" data-aos="fade-up">Join our library community today</p>
 
-        <div style="max-width: 600px; margin: 0 auto; background: white; border-radius: 30px; padding: 3rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05);" data-aos="fade-up">
+        <div class="join-container" data-aos="fade-up">
             <div class="form-group">
                 <input type="text" placeholder="Full Name">
             </div>
@@ -1558,10 +1577,10 @@
             <div class="footer-links">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a onclick="showSection('home')">Home</a></li>
-                    <li><a onclick="showSection('books')">Books</a></li>
-                    <li><a onclick="showSection('categories')">Categories</a></li>
-                    <li><a onclick="showSection('events')">Events</a></li>
+                    <li><a onclick="showSection('home', this)">Home</a></li>
+                    <li><a onclick="showSection('books', this)">Books</a></li>
+                    <li><a onclick="showSection('categories', this)">Categories</a></li>
+                    <li><a onclick="showSection('events', this)">Events</a></li>
                 </ul>
             </div>
 
@@ -1605,9 +1624,10 @@
         });
 
         // Navigation function
-        function showSection(sectionName) {
+        function showSection(sectionName, element) {
             // Hide all sections
-            document.querySelectorAll('.section').forEach(section => {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
                 section.classList.remove('active-section');
             });
             
@@ -1617,14 +1637,21 @@
                 sectionToShow.classList.add('active-section');
             }
             
-            // Update active nav item
-            document.querySelectorAll('.nav-item').forEach(item => {
+            // Remove active class from all nav items
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
                 item.classList.remove('active');
             });
             
-            // Find and activate the clicked nav item
-            if (event && event.currentTarget) {
-                event.currentTarget.classList.add('active');
+            // Add active class to clicked nav item
+            if (element) {
+                element.classList.add('active');
+            }
+            
+            // Close mobile menu if open
+            const navLinks = document.getElementById('navLinks');
+            if (window.innerWidth <= 768) {
+                navLinks.classList.remove('show');
             }
             
             // Scroll to top smoothly
@@ -1636,36 +1663,17 @@
 
         // Mobile menu toggle
         function toggleMobileMenu() {
-            const navLinks = document.querySelector('.nav-links');
-            if (navLinks.style.display === 'flex') {
-                navLinks.style.display = 'none';
-            } else {
-                navLinks.style.display = 'flex';
-                navLinks.style.flexDirection = 'column';
-                navLinks.style.position = 'absolute';
-                navLinks.style.top = '80px';
-                navLinks.style.left = '0';
-                navLinks.style.width = '100%';
-                navLinks.style.background = 'white';
-                navLinks.style.padding = '2rem';
-                navLinks.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
-                navLinks.style.zIndex = '1000';
-            }
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('show');
         }
 
-        // Handle window resize
-        window.addEventListener('resize', function() {
-            const navLinks = document.querySelector('.nav-links');
-            if (window.innerWidth > 768) {
-                navLinks.style.display = 'flex';
-                navLinks.style.flexDirection = 'row';
-                navLinks.style.position = 'static';
-                navLinks.style.width = 'auto';
-                navLinks.style.background = 'transparent';
-                navLinks.style.padding = '0';
-                navLinks.style.boxShadow = 'none';
-            } else {
-                navLinks.style.display = 'none';
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navLinks = document.getElementById('navLinks');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            if (!navLinks.contains(event.target) && !mobileMenu.contains(event.target)) {
+                navLinks.classList.remove('show');
             }
         });
 
@@ -1687,15 +1695,11 @@
             });
         });
 
-        // Set active nav item on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            // Ensure home section is active
-            const homeNav = document.querySelector('.nav-item.active');
-            if (!homeNav) {
-                const firstNav = document.querySelector('.nav-item');
-                if (firstNav) {
-                    firstNav.classList.add('active');
-                }
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            const navLinks = document.getElementById('navLinks');
+            if (window.innerWidth > 768) {
+                navLinks.classList.remove('show');
             }
         });
     </script>
